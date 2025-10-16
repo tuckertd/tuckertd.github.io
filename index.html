@@ -8,19 +8,61 @@
     body {
       font-family: Arial, sans-serif;
       background: #f8f8f8;
+      color: #222;
       text-align: center;
-      margin-top: 10%;
+      margin: 0;
+      padding: 40px;
+    }
+    h1 {
+      margin-bottom: 0;
+    }
+    p {
+      max-width: 700px;
+      margin: 10px auto;
+      line-height: 1.6;
+    }
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      height: 0;
+      overflow: hidden;
+      max-width: 800px;
+      margin: 40px auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    a {
+      color: #0073e6;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
   <h1>Matthew R. Tucker</h1>
-  <p><strong>Technical Artist</strong></p>
+  <p><strong>Senior Technical Artist</strong></p>
   <p>
-    A senior Technical Artist specializing in rigging and pipeline development, with experience in both AAA games and feature animation.
-    Skilled in Unreal Engine and proprietary game engines, Python scripting, and diverse rigging techniques, delivering diverse solutions that enhance artists’ and engineers’ efficiency and creative output.
+    A senior Technical Artist specializing in rigging and pipeline development, with experience in both AAA games and feature animation. Skilled in Unreal Engine and proprietary game engines, Python scripting, and diverse rigging techniques, delivering diverse solutions that enhance artists’ and engineers’ efficiency and creative output.
   </p>
-  <p><a href="https://vimeo.com/tuckertd" target="_blank">Vimeo Portfolio</a></p>
+
+  <div class="video-container">
+    <iframe src="https://player.vimeo.com/video/933041946?h=cf7e2b5f71" 
+      allow="autoplay; fullscreen; picture-in-picture" 
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <p><a href="https://vimeo.com/tuckertd" target="_blank">Vimeo</a></p>
   <p><a href="https://www.linkedin.com/in/matthew-r-tucker-88589612/" target="_blank">Linkedin</a></p>
 </body>
 </html>
