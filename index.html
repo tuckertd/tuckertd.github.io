@@ -1,68 +1,153 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Matthew R. Tucker | Technical Artist</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Matthew R. Tucker — Technical Artist</title>
+  <meta name="description" content="Technical Artist specializing in rigging and pipeline development for AAA games and feature animation. Proprietary and Unreal Engines, Python, and advanced rigging." />
+  <meta property="og:title" content="Matthew R. Tucker — Technical Artist" />
+  <meta property="og:description" content="Technical Artist specializing in rigging and pipeline development for AAA games and feature animation." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tuckertd.github.io/github.io/" />
   <style>
+    :root {
+      --bg: #0b0c10;
+      --panel: #111218;
+      --text: #e6e6e6;
+      --muted: #a7adba;
+      --accent: #6ee7ff;
+      --accent-2: #a78bfa;
+      --card: #151822;
+      --radius: 18px;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    @media (prefers-color-scheme: light) {
+      :root { --bg:#f8fafc; --panel:#ffffff; --text:#0f172a; --muted:#475569; --card:#ffffff; }
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
     body {
-      font-family: Arial, sans-serif;
-      background: #f8f8f8;
-      color: #222;
-      text-align: center;
-      margin: 0;
-      padding: 40px;
+      margin: 0; font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, Noto Sans, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text); background: radial-gradient(1200px 800px at 80% -10%, rgba(110,231,255,.08), transparent 60%),
+               radial-gradient(1200px 800px at 10% 110%, rgba(167,139,250,.08), transparent 60%), var(--bg);
     }
-    h1 {
-      margin-bottom: 0;
-    }
-    p {
-      max-width: 700px;
-      margin: 10px auto;
-      line-height: 1.6;
-    }
-    .video-container {
-      position: relative;
-      padding-bottom: 56.25%; /* 16:9 aspect ratio */
-      height: 0;
-      overflow: hidden;
-      max-width: 800px;
-      margin: 0px auto;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-    .video-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none; /* Changed from border: 0 to border: none for clarity */
-    }
-    a {
-      color: #0073e6;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
+    .container { max-width: 1120px; margin: 0 auto; padding: 24px; }
+    header { position: sticky; top: 0; backdrop-filter: blur(8px); background: color-mix(in lab, var(--bg) 80%, transparent); border-bottom: 1px solid rgba(255,255,255,.06); z-index: 30; }
+    nav { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+    .brand { font-weight: 700; letter-spacing: .2px; }
+    .brand a { color: var(--text); text-decoration: none; }
+    .navlinks a { color: var(--muted); text-decoration: none; margin-left: 18px; font-weight: 600; }
+    .navlinks a:hover { color: var(--text); }
+
+    .hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: 28px; padding: 48px 0 16px; align-items: center; }
+    @media (max-width: 880px) { .hero { grid-template-columns: 1fr; } }
+
+    .card { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid rgba(255,255,255,.06); }
+    .pad { padding: 28px; }
+    h1 { font-size: clamp(28px, 4vw, 48px); margin: 0 0 8px; letter-spacing: .3px; }
+    .subtitle { font-size: 18px; color: var(--muted); margin: 0 0 18px; }
+    .badges { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 0; }
+    .badge { background: linear-gradient(135deg, rgba(110,231,255,.12), rgba(167,139,250,.12)); border: 1px solid rgba(255,255,255,.08); color: var(--text); padding: 8px 12px; border-radius: 999px; font-size: 13px; font-weight: 600; }
+
+    .vimeo-wrap { aspect-ratio: 16 / 9; width: 100%; border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(255,255,255,.08); box-shadow: var(--shadow); background: #000; }
+    .vimeo-wrap iframe { width: 100%; height: 100%; display: block; border: 0; }
+
+    section { margin: 24px 0 8px; }
+    h2 { font-size: 22px; margin: 0 0 12px; }
+
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    @media (max-width: 960px) { .grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } }
+
+    .proj { padding: 18px; }
+    .proj h3 { margin: 0 0 8px; font-size: 16px; }
+    .proj p { margin: 0; color: var(--muted); font-size: 14px; }
+
+    .cta { display: flex; gap: 12px; margin-top: 18px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 14px; border-radius: 12px; font-weight: 700; text-decoration: none; border: 1px solid rgba(255,255,255,.12); background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00)); color: var(--text); }
+    .btn:hover { transform: translateY(-1px); }
+
+    footer { border-top: 1px solid rgba(255,255,255,.08); margin-top: 40px; padding: 24px 0 40px; color: var(--muted); }
+    .small { font-size: 13px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
   </style>
 </head>
 <body>
-  <h1>Matthew R. Tucker</h1>
-  <p><strong>Senior Technical Artist</strong></p>
-  <p>
-    A senior Technical Artist specializing in rigging and pipeline development, with experience in both AAA games and feature animation. Skilled in Unreal Engine and proprietary game engines, Python scripting, and diverse rigging techniques, delivering diverse solutions that enhance art and engineer’s efficiency and creative output.
-  </p>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="brand"><a href="#">Matthew R. Tucker</a></div>
+        <div class="navlinks" aria-label="Primary">
+          <a href="#about">About</a>
+          <a href="#reel">Reel</a>
+          <a href="#work">Selected Work</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
 
-  <div class="video-container">
-    <iframe src="https://player.vimeo.com/video/933041946?h=cf7e2b5f71" 
-      allow="autoplay; fullscreen; picture-in-picture" 
-      allowfullscreen>
-    </iframe>
-  </div>
+  <main class="container">
+    <section class="hero">
+      <div class="card pad">
+        <h1>Technical Artist</h1>
+        <p class="subtitle">Rigging • Scripting</p>
+        <p>
+          A Technical Artist specializing in rigging and pipeline development, with experience in both AAA games and feature animation. Skilled in Unreal Engine and proprietary game engines, Python scripting, and diverse rigging techniques, delivering diverse solutions that enhance art and engineer’s efficiency and creative output.
+        </p>
+        <div class="badges" aria-label="Key skills">
+          <span class="badge">Rigging</span>
+          <span class="badge">Modular Systems</span>
+          <span class="badge">Unreal Animation BP</span>
+          <span class="badge">Python</span>
+          <span class="badge">MetaHuman</span>
+        </div>
+        <div class="cta">
+          <a class="btn" href="#reel">Watch Reel</a>
+          <a class="btn" href="https://www.linkedin.com/in/matthewrtucker/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="https://vimeo.com/933041946" target="_blank" rel="noopener">Vimeo</a>
+        </div>
+      </div>
+      <div class="vimeo-wrap card" id="reel">
+        <iframe src="https://player.vimeo.com/video/933041946?h=0&title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Reel: Matthew R. Tucker"></iframe>
+      </div>
+    </section>
 
-  <p><a href="https://vimeo.com/tuckertd" target="_blank">Vimeo</a></p>
-  <p><a href="https://www.linkedin.com/in/matthew-r-tucker-88589612/" target="_blank">Linkedin</a></p>
+    <section id="work">
+      <h2>Selected Work</h2>
+      <div class="grid">
+        <article class="card proj">
+          <h3>Spider‑Man 2 — Facial Rigging</h3>
+          <p>MetaHuman‑based heads, Venom & Scream face rigs, and pipeline integration across DCCs.</p>
+        </article>
+        <article class="card proj">
+          <h3>Unreal Animation Blueprints</h3>
+          <p>State machines, blendspaces, and runtime optimizations for character systems.</p>
+        </article>
+        <article class="card proj">
+          <h3>Bifrost Modular Rigging</h3>
+          <p>R&amp;D on node‑based modular frameworks, custom modules, and tutorials.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="about">
+      <h2>About</h2>
+      <div class="card pad">
+        <p>I'm a Technical Artist focused on robust facial systems, modular rigging, and frictionless pipelines that scale across teams and titles. I partner closely with animation, engineering, and scanning to ship resilient solutions that keep artists fast and happy.</p>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <div class="card pad">
+        <p>Best way to reach me is on <a href="https://www.linkedin.com/in/matthewrtucker/" target="_blank" rel="noopener">LinkedIn</a>.</p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
