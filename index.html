@@ -73,6 +73,11 @@
       box-shadow: 0 10px 30px rgba(0,0,0,.35);
     }
 
+    /* ensure video-card sections all occupy the right column so they stack vertically */
+    .video-card {
+      grid-column: 2;
+    }
+
     .h1 { font-size: 1.25rem; margin: 0 0 12px; letter-spacing: .2px; }
 
     .video { position: relative; width: 100%; border-radius: 12px; overflow: hidden; background: #000; }
@@ -122,7 +127,7 @@
       <h1 class="name">Matthew R. Tucker</h1>
       <p class="title">Technical Artist</p>
       <p class="desc">
-        A senior Technical Artist specializing in rigging and pipeline development, with experience in both AAA games and feature animation. Skilled in Unreal Engine and proprietary game engines, Python scripting, and diverse rigging techniques, delivering diverse solutions that enhance art and engineer’s efficiency and creative output.
+        A senior Technical Artist specializing in rigging and pipeline development, with experience in both AAA games and feature animation. Skilled in Unreal Engine and proprietary game engines, Pyth[...]
       </p>
       <div class="btns">
         <a href="mtucker_resume.pdf" download class="btn">Resume (PDF)</a>
@@ -218,21 +223,6 @@
         </div>
       </details>
     </section>
-    <!-- TEMPLATE for additional videos:
-    <section class="content video-card" aria-label="Another Reel">
-      <h2 class="h1">[Video Title]</h2>
-      <div class="video">
-        <iframe src="https://player.vimeo.com/video/[ID]?title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="[Accessible Title]"></iframe>
-      </div>
-      <details class="accordion">
-        <summary><span class="caret">▶</span> Breakdown</summary>
-        <div class="accordion-inner">
-          <!-- add sections here -->
-        </div>
-      </details>
-    </section>
-    
-    </section>
     <section class="content video-card" aria-label="Ratchet &amp; Clank: Rift Apart Technical Art Reel">
       <h2 class="h1">Ratchet &amp; Clank: Rift Apart Technical Art Reel</h2>
       <div class="video">
@@ -244,7 +234,7 @@
       <details class="accordion">
         <summary><span class="caret">▶</span> Reel Breakdown</summary>
         <div class="accordion-inner">
-          <p>I was welcomed onto this project late into production and my tasks were to evaluate the main characters, Ratchet and Rivet, and help get them across the finish line. A lot of amazing work had already been done on them from Sol Brennan and Adam Engel, so it made the polish work quite fun. The majority of what I had done was polishing a lot of the face shapework myself (a process that used to be passed back and forth between rigging and modeling), creating new shapes (creating corner poses for the mouth shapes were especially useful), and absorbing all the armors that were delivered at the 11th hour.</p>
+          <p>I was welcomed onto this project late into production and my tasks were to evaluate the main characters, Ratchet and Rivet, and help get them across the finish line. A lot of amazing work[...]
           <div class="breakdown">
             <h3>Reel Breakdown:</h3>
             <ul>
