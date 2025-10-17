@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Matthew R. Tucker — Senior Technical Artist</title>
+  <title>Matthew R. Tucker — Technical Artist</title>
   <style>
     :root {
       --bg: #0f1115;
@@ -32,7 +32,6 @@
       gap: 28px;
     }
 
-    /* Left rail */
     .sidebar {
       position: sticky;
       top: 20px;
@@ -45,9 +44,22 @@
     }
     .name { font-size: 1.6rem; font-weight: 700; margin: 0 0 6px; }
     .title { color: var(--muted); margin: 0 0 14px; font-weight: 600; }
-    .desc { margin: 0; color: #d8dde4; }
+    .desc { margin: 0 0 18px; color: #d8dde4; }
 
-    /* Right content */
+    .btn {
+      display: inline-block;
+      background: var(--accent);
+      color: #0f1115;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      transition: background 0.2s;
+    }
+    .btn:hover {
+      background: #a9daff;
+    }
+
     .content {
       background: var(--panel);
       border: 1px solid #1f2430;
@@ -58,7 +70,6 @@
 
     .h1 { font-size: 1.25rem; margin: 0 0 12px; letter-spacing: .2px; }
 
-    /* Responsive Vimeo embed */
     .video { position: relative; width: 100%; border-radius: 12px; overflow: hidden; background: #000; }
     .video::before { content: ""; display: block; padding-top: 56.25%; }
     .video iframe {
@@ -73,7 +84,6 @@
 
     hr { border: none; border-top: 1px solid #232936; margin: 20px 0; }
 
-    /* Mobile */
     @media (max-width: 900px) {
       .wrap { grid-template-columns: 1fr; }
       .sidebar { position: static; }
@@ -82,20 +92,18 @@
 </head>
 <body>
   <main class="wrap">
-    <!-- LEFT: name / title / description -->
     <aside class="sidebar" aria-label="Profile">
       <h1 class="name">Matthew R. Tucker</h1>
-      <p class="title">Senior Technical Artist — Rigging & Pipeline</p>
+      <p class="title">Technical Artist</p>
       <p class="desc">
         A senior Technical Artist specializing in rigging and pipeline development, with experience in both AAA games and feature animation. Skilled in Unreal Engine and proprietary game engines, Python scripting, and diverse rigging techniques, delivering diverse solutions that enhance art and engineer’s efficiency and creative output.
       </p>
+      <a href="mtucker_resume.pdf" download class="btn">Download Resume (PDF)</a>
     </aside>
 
-    <!-- RIGHT: Reel header, Vimeo, and breakdown -->
     <section class="content" aria-label="Reel">
       <h2 class="h1">Animation &amp; Rigging Reel</h2>
       <div class="video">
-        <!-- Replace the src with any Vimeo embed you prefer -->
         <iframe src="https://player.vimeo.com/video/933041946?h=9e9a0c7d5f&title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Matthew R. Tucker Reel"></iframe>
       </div>
 
@@ -151,7 +159,7 @@
         <div class="section">
           <h3>Not featured in the reel, and shoutouts</h3>
           <ul>
-            <li>None of this was possible without the talented team at Insomniac &mdash; especially the Tech Animation team</li>
+            <li>None of this was possible without the talented team at Insomniac — especially the Tech Animation team</li>
             <li>Initial face rigging pipeline built by Noah Alzayer</li>
             <li>Initial Scream shapes sculpted by Matthew Lefferts</li>
             <li>Creative rigs for cut content</li>
