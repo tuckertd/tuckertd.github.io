@@ -13,7 +13,9 @@
       --accent: #82c8ff;
       --maxw: 1200px;
     }
+
     html, body { height: 100%; }
+
     body {
       margin: 0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica, Arial, sans-serif;
@@ -21,6 +23,7 @@
       color: var(--text);
       line-height: 1.55;
     }
+
     a { color: var(--accent); text-decoration: none; }
 
     .wrap {
@@ -28,7 +31,7 @@
       margin: 0 auto;
       padding: 32px 20px 56px;
       display: grid;
-      grid-template-columns: 320px 1fr;
+      grid-template-columns: minmax(0, 320px) 1fr;
       gap: 28px;
     }
 
@@ -42,6 +45,7 @@
       padding: 20px;
       box-shadow: 0 10px 30px rgba(0,0,0,.3);
     }
+
     .name { font-size: 1.6rem; font-weight: 700; margin: 0 0 6px; }
     .title { color: var(--muted); margin: 0 0 14px; font-weight: 600; }
     .desc { margin: 0 0 18px; color: #d8dde4; }
@@ -52,6 +56,7 @@
       gap: 10px;
       margin-top: 10px;
     }
+
     .btn {
       display: inline-block;
       background: var(--accent);
@@ -73,11 +78,6 @@
       box-shadow: 0 10px 30px rgba(0,0,0,.35);
     }
 
-    /* ensure video-card sections all occupy the right column so they stack vertically */
-    .video-card {
-      grid-column: 2;
-    }
-
     .h1 { font-size: 1.25rem; margin: 0 0 12px; letter-spacing: .2px; }
 
     .video { position: relative; width: 100%; border-radius: 12px; overflow: hidden; background: #000; }
@@ -91,6 +91,7 @@
       border-radius: 12px;
       overflow: hidden;
     }
+
     details.accordion > summary {
       list-style: none;
       cursor: pointer;
@@ -103,6 +104,7 @@
       gap: 10px;
       user-select: none;
     }
+
     details.accordion > summary::-webkit-details-marker { display: none; }
     .caret { display: inline-block; transition: transform .2s ease; }
     details[open] .caret { transform: rotate(90deg); }
@@ -115,9 +117,23 @@
 
     hr { border: none; border-top: 1px solid #232936; margin: 20px 0; }
 
+    /* responsive layout */
+    @media (min-width: 901px) {
+      .video-card { grid-column: 2; }
+    }
+
     @media (max-width: 900px) {
       .wrap { grid-template-columns: 1fr; }
       .sidebar { position: static; }
+      .video-card { grid-column: 1; }
+      .content { padding: 18px; }
+    }
+
+    @media (max-width: 420px) {
+      .name { font-size: 1.35rem; }
+      .title { font-size: 0.95rem; }
+      .btns { gap: 8px; }
+      .btn { padding: 9px 14px; font-size: 0.95rem; }
     }
   </style>
 </head>
@@ -127,7 +143,7 @@
       <h1 class="name">Matthew R. Tucker</h1>
       <p class="title">Technical Artist</p>
       <p class="desc">
-        A senior Technical Artist specializing in rigging and pipeline development, with experience in both AAA games and feature animation. Skilled in Unreal Engine and proprietary game engines, Pyth[...]
+        A senior Technical Artist specializing in rigging and pipeline development, with experience in both AAA games and feature animation. Skilled in Unreal Engine and proprietary game engines, Python scripting, and diverse rigging techniques, delivering diverse solutions that enhance artists’ and engineers’ efficiency and creative output.
       </p>
       <div class="btns">
         <a href="mtucker_resume.pdf" download class="btn">Resume (PDF)</a>
@@ -143,7 +159,6 @@
         <iframe src="https://player.vimeo.com/video/933041946?h=9e9a0c7d5f&title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Spiderman 2 Reel"></iframe>
       </div>
 
-      <!-- Collapsible: Reel Breakdown -->
       <details class="accordion">
         <summary aria-label="Toggle breakdown"><span class="caret">▶</span> Reel Breakdown</summary>
         <div class="accordion-inner">
@@ -223,6 +238,8 @@
         </div>
       </details>
     </section>
+
+    <!-- VIDEO CARD 2 -->
     <section class="content video-card" aria-label="Ratchet &amp; Clank: Rift Apart Technical Art Reel">
       <h2 class="h1">Ratchet &amp; Clank: Rift Apart Technical Art Reel</h2>
       <div class="video">
@@ -234,7 +251,7 @@
       <details class="accordion">
         <summary><span class="caret">▶</span> Reel Breakdown</summary>
         <div class="accordion-inner">
-          <p>I was welcomed onto this project late into production and my tasks were to evaluate the main characters, Ratchet and Rivet, and help get them across the finish line. A lot of amazing work[...]
+          <p>I was welcomed onto this project late into production and my tasks were to evaluate the main characters, Ratchet and Rivet, and help get them across the finish line.</p>
           <div class="breakdown">
             <h3>Reel Breakdown:</h3>
             <ul>
@@ -246,7 +263,6 @@
         </div>
       </details>
     </section>
-
   </main>
 </body>
 </html>
