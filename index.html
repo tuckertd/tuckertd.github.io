@@ -64,6 +64,7 @@
     }
     .btn:hover { background: #a9daff; }
 
+    /* content card */
     .content {
       background: var(--panel);
       border: 1px solid #1f2430;
@@ -76,12 +77,33 @@
 
     .video { position: relative; width: 100%; border-radius: 12px; overflow: hidden; background: #000; }
     .video::before { content: ""; display: block; padding-top: 56.25%; }
-    .video iframe {
-      position: absolute; inset: 0; width: 100%; height: 100%; border: 0;
-    }
+    .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 
-    .breakdown { margin-top: 22px; }
-    .breakdown h2 { font-size: 1.05rem; margin: 22px 0 8px; color: var(--accent); }
+    /* collapsible breakdown */
+    details.accordion {
+      margin-top: 16px;
+      border: 1px solid #232936;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    details.accordion > summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      font-weight: 600;
+      color: var(--text);
+      background: #161c27;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      user-select: none;
+    }
+    details.accordion > summary::-webkit-details-marker { display: none; }
+    .caret { display: inline-block; transition: transform .2s ease; }
+    details[open] .caret { transform: rotate(90deg); }
+    .accordion-inner { padding: 14px 18px; }
+
+    .breakdown h2 { font-size: 1.05rem; margin: 6px 0 8px; color: var(--accent); }
     .breakdown ul { margin: 6px 0 10px 20px; padding: 0; }
     .breakdown li { margin: 6px 0; }
     .section { margin-top: 14px; }
@@ -109,90 +131,111 @@
       </div>
     </aside>
 
-    <section class="content" aria-label="Reel">
-      <h2 class="h1">Animation &amp; Rigging Reel</h2>
+    <!-- VIDEO CARD 1 -->
+    <section class="content video-card" aria-label="Reel">
+      <h2 class="h1">Spiderman 2 Technical Art Reel</h2>
       <div class="video">
         <iframe src="https://player.vimeo.com/video/933041946?h=9e9a0c7d5f&title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Matthew R. Tucker Reel"></iframe>
       </div>
 
-      <div class="breakdown" aria-label="Reel Breakdown">
-        <h2>Reel Breakdown:</h2>
-
-        <div class="section">
-          <h3>Venom</h3>
-          <ul>
-            <li>Face rig</li>
-            <li>Hand-sculpted FACS blendshapes for lips/eyes/teeth; joints for jaw/head/tongue; Havok for saliva</li>
-            <li>Worked with animation capture data</li>
-          </ul>
-        </div>
-
-        <div class="section">
-          <h3>Scream</h3>
-          <ul>
-            <li>Face rig</li>
-            <li>Rapid, stripped-down rig based on Venom's rig</li>
-          </ul>
-        </div>
-
-        <div class="section">
-          <h3>Metahuman Development</h3>
-          <ul>
-            <li>Manipulated to work with multiple body archetypes (civ female/male, enemy female/male, enemy heavy)</li>
-            <li>Compatible with open world, gameplay, and cinematics</li>
-          </ul>
-        </div>
-
-        <div class="section">
-          <h3>General Face Rigging / Tools</h3>
-          <ul>
-            <li>Tools to warp facial hair to fit all face types</li>
-            <li>Rigs for spline hair</li>
-            <li>Collaboration and ingestion of 3rd-party facial rigs from 3Lateral</li>
-            <li>Maintenance to hide the seam between separate body and head rigs</li>
-            <li>Forking head rigs to work with different outfits/skeletons</li>
-            <li>Warped rigs to work on heroically proportioned enemies</li>
-          </ul>
-        </div>
-
-        <div class="section">
-          <h3>Lizard</h3>
-          <ul>
-            <li>Spike rigging to prevent Spider-Man's suit from getting impaled</li>
-          </ul>
-        </div>
-
-        <hr />
-
-        <div class="section">
-          <h3>Not featured in the reel, and shoutouts</h3>
-          <ul>
-            <li>None of this was possible without the talented team at Insomniac — especially the Tech Animation team</li>
-            <li>Initial face rigging pipeline built by Noah Alzayer</li>
-            <li>Initial Scream shapes sculpted by Matthew Lefferts</li>
-            <li>Creative rigs for cut content</li>
-            <li>Rapid rig prototypes for internal game jam</li>
-            <li>Collaborated with Epic Games on an early version of MetaHuman</li>
-            <li>Maintenance of legacy head rigs from multiple games and different studios</li>
-            <li>Added neck rigging component</li>
-            <li>Guided animation workflows for complicated characters:
+      <!-- Collapsible: Reel Breakdown -->
+      <details class="accordion">
+        <summary aria-label="Toggle breakdown"><span class="caret">▶</span> Reel Breakdown</summary>
+        <div class="accordion-inner">
+          <div class="breakdown" aria-label="Reel Breakdown Content">
+            <div class="section">
+              <h3>Venom</h3>
               <ul>
-                <li>Pose libraries</li>
-                <li>Animation bibles</li>
-                <li>Patch notes for each rigging update</li>
-                <li>Video breakdowns</li>
+                <li>Face rig</li>
+                <li>Hand-sculpted FACS blendshapes for lips/eyes/teeth; joints for jaw/head/tongue; Havok for saliva</li>
+                <li>Worked with animation capture data</li>
               </ul>
-            </li>
-            <li>Scrambled to put together rigs for the 2021 announcement trailer</li>
-            <li>Assisted in refactoring the internal modular rigging system (tool built by Alan Weider)</li>
-            <li>Multiple Simplygon recipes to maintain head seam across LODs</li>
-            <li>Guinea pig for new internal face rigging process (tool built by Josh DiCarlo)</li>
-            <li>Added functionality for the scene assembly tool to enable loading/unloading/swapping of face rigs</li>
-            <li>Authored most steps in the internal rig validation tool (tool built by Daniel McCrummen)</li>
-          </ul>
+            </div>
+
+            <div class="section">
+              <h3>Scream</h3>
+              <ul>
+                <li>Face rig</li>
+                <li>Rapid, stripped-down rig based on Venom's rig</li>
+              </ul>
+            </div>
+
+            <div class="section">
+              <h3>Metahuman Development</h3>
+              <ul>
+                <li>Manipulated to work with multiple body archetypes (civ female/male, enemy female/male, enemy heavy)</li>
+                <li>Compatible with open world, gameplay, and cinematics</li>
+              </ul>
+            </div>
+
+            <div class="section">
+              <h3>General Face Rigging / Tools</h3>
+              <ul>
+                <li>Tools to warp facial hair to fit all face types</li>
+                <li>Rigs for spline hair</li>
+                <li>Collaboration and ingestion of 3rd-party facial rigs from 3Lateral</li>
+                <li>Maintenance to hide the seam between separate body and head rigs</li>
+                <li>Forking head rigs to work with different outfits/skeletons</li>
+                <li>Warped rigs to work on heroically proportioned enemies</li>
+              </ul>
+            </div>
+
+            <div class="section">
+              <h3>Lizard</h3>
+              <ul>
+                <li>Spike rigging to prevent Spider-Man's suit from getting impaled</li>
+              </ul>
+            </div>
+
+            <hr />
+
+            <div class="section">
+              <h3>Not featured in the reel, and shoutouts</h3>
+              <ul>
+                <li>None of this was possible without the talented team at Insomniac — especially the Tech Animation team</li>
+                <li>Initial face rigging pipeline built by Noah Alzayer</li>
+                <li>Initial Scream shapes sculpted by Matthew Lefferts</li>
+                <li>Creative rigs for cut content</li>
+                <li>Rapid rig prototypes for internal game jam</li>
+                <li>Collaborated with Epic Games on an early version of MetaHuman</li>
+                <li>Maintenance of legacy head rigs from multiple games and different studios</li>
+                <li>Added neck rigging component</li>
+                <li>Guided animation workflows for complicated characters:
+                  <ul>
+                    <li>Pose libraries</li>
+                    <li>Animation bibles</li>
+                    <li>Patch notes for each rigging update</li>
+                    <li>Video breakdowns</li>
+                  </ul>
+                </li>
+                <li>Scrambled to put together rigs for the 2021 announcement trailer</li>
+                <li>Assisted in refactoring the internal modular rigging system (tool built by Alan Weider)</li>
+                <li>Multiple Simplygon recipes to maintain head seam across LODs</li>
+                <li>Guinea pig for new internal face rigging process (tool built by Josh DiCarlo)</li>
+                <li>Added functionality for the scene assembly tool to enable loading/unloading/swapping of face rigs</li>
+                <li>Authored most steps in the internal rig validation tool (tool built by Daniel McCrummen)</li>
+              </ul>
+            </div>
+          </div>
         </div>
-      </div>
+      </details>
     </section>
+
+    <!-- TEMPLATE for additional videos:
+    <section class="content video-card" aria-label="Another Reel">
+      <h2 class="h1">[Video Title]</h2>
+      <div class="video">
+        <iframe src="https://player.vimeo.com/video/[ID]?title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="[Accessible Title]"></iframe>
+      </div>
+      <details class="accordion">
+        <summary><span class="caret">▶</span> Breakdown</summary>
+        <div class="accordion-inner">
+          <!-- add sections here -->
+        </div>
+      </details>
+    </section>
+    -->
+
   </main>
 </body>
 </html>
