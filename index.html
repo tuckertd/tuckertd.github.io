@@ -21,7 +21,7 @@
       color: var(--text);
       line-height: 1.55;
     }
-    a { color: var(--accent); }
+    a { color: var(--accent); text-decoration: none; }
 
     .wrap {
       max-width: var(--maxw);
@@ -46,6 +46,12 @@
     .title { color: var(--muted); margin: 0 0 14px; font-weight: 600; }
     .desc { margin: 0 0 18px; color: #d8dde4; }
 
+    .btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
     .btn {
       display: inline-block;
       background: var(--accent);
@@ -56,9 +62,7 @@
       border-radius: 8px;
       transition: background 0.2s;
     }
-    .btn:hover {
-      background: #a9daff;
-    }
+    .btn:hover { background: #a9daff; }
 
     .content {
       background: var(--panel);
@@ -98,7 +102,11 @@
       <p class="desc">
         A senior Technical Artist specializing in rigging and pipeline development, with experience in both AAA games and feature animation. Skilled in Unreal Engine and proprietary game engines, Python scripting, and diverse rigging techniques, delivering diverse solutions that enhance art and engineer’s efficiency and creative output.
       </p>
-      <a href="mtucker_resume.pdf" download class="btn">Download Resume (PDF)</a>
+      <div class="btns">
+        <a href="mtucker_resume.pdf" download class="btn">Resume (PDF)</a>
+        <a href="https://vimeo.com/tuckertd" target="_blank" class="btn">Vimeo</a>
+        <a href="https://www.linkedin.com/in/matthew-r-tucker-88589612/" target="_blank" class="btn">LinkedIn</a>
+      </div>
     </aside>
 
     <section class="content" aria-label="Reel">
