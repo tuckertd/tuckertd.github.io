@@ -3,104 +3,180 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Matthew R. Tucker — Technical Artist</title>
-  <meta name="description" content="Technical Artist specializing in rigging and pipeline development for AAA games and feature animation. Proprietary and Unreal Engines, Python, and advanced rigging." />
-  <meta property="og:title" content="Matthew R. Tucker — Technical Artist" />
-  <meta property="og:description" content="Technical Artist specializing in rigging and pipeline development for AAA games and feature animation." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://tuckertd.github.io/github.io/" />
+  <title>Matthew R. Tucker — Senior Technical Artist</title>
   <style>
     :root {
-      --bg: #0b0c10;
-      --panel: #111218;
-      --text: #e6e6e6;
-      --muted: #a7adba;
-      --accent: #6ee7ff;
-      --accent-2: #a78bfa;
-      --card: #151822;
-      --radius: 18px;
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --bg: #0f1115;
+      --panel: #141821;
+      --text: #e8ecf1;
+      --muted: #9aa7b2;
+      --accent: #82c8ff;
+      --maxw: 1200px;
     }
-    @media (prefers-color-scheme: light) {
-      :root { --bg:#f8fafc; --panel:#ffffff; --text:#0f172a; --muted:#475569; --card:#ffffff; }
-    }
-    * { box-sizing: border-box; }
     html, body { height: 100%; }
     body {
-      margin: 0; font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, Noto Sans, "Apple Color Emoji", "Segoe UI Emoji";
-      color: var(--text); background: radial-gradient(1200px 800px at 80% -10%, rgba(110,231,255,.08), transparent 60%),
-               radial-gradient(1200px 800px at 10% 110%, rgba(167,139,250,.08), transparent 60%), var(--bg);
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
     }
-    .container { max-width: 1120px; margin: 0 auto; padding: 24px; }
-    header { position: sticky; top: 0; backdrop-filter: blur(8px); background: color-mix(in lab, var(--bg) 80%, transparent); border-bottom: 1px solid rgba(255,255,255,.06); z-index: 30; }
-    nav { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
-    .brand { font-weight: 700; letter-spacing: .2px; }
-    .brand a { color: var(--text); text-decoration: none; }
-    .navlinks a { color: var(--muted); text-decoration: none; margin-left: 18px; font-weight: 600; }
-    .navlinks a:hover { color: var(--text); }
+    a { color: var(--accent); }
 
-    .hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: 28px; padding: 48px 0 16px; align-items: center; }
-    @media (max-width: 880px) { .hero { grid-template-columns: 1fr; } }
+    .wrap {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 32px 20px 56px;
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 28px;
+    }
 
-    .card { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid rgba(255,255,255,.06); }
-    .pad { padding: 28px; }
-    h1 { font-size: clamp(28px, 4vw, 48px); margin: 0 0 8px; letter-spacing: .3px; }
-    .subtitle { font-size: 18px; color: var(--muted); margin: 0 0 18px; }
-    .badges { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 0; }
-    .badge { background: linear-gradient(135deg, rgba(110,231,255,.12), rgba(167,139,250,.12)); border: 1px solid rgba(255,255,255,.08); color: var(--text); padding: 8px 12px; border-radius: 999px; font-size: 13px; font-weight: 600; }
+    /* Left rail */
+    .sidebar {
+      position: sticky;
+      top: 20px;
+      align-self: start;
+      background: var(--panel);
+      border: 1px solid #1f2430;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.3);
+    }
+    .name { font-size: 1.6rem; font-weight: 700; margin: 0 0 6px; }
+    .title { color: var(--muted); margin: 0 0 14px; font-weight: 600; }
+    .desc { margin: 0; color: #d8dde4; }
 
-    .vimeo-wrap { aspect-ratio: 16 / 9; width: 100%; border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(255,255,255,.08); box-shadow: var(--shadow); background: #000; }
-    .vimeo-wrap iframe { width: 100%; height: 100%; display: block; border: 0; }
+    /* Right content */
+    .content {
+      background: var(--panel);
+      border: 1px solid #1f2430;
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
 
-    section { margin: 24px 0 8px; }
-    h2 { font-size: 22px; margin: 0 0 12px; }
+    .h1 { font-size: 1.25rem; margin: 0 0 12px; letter-spacing: .2px; }
 
-    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    @media (max-width: 960px) { .grid { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } }
+    /* Responsive Vimeo embed */
+    .video { position: relative; width: 100%; border-radius: 12px; overflow: hidden; background: #000; }
+    .video::before { content: ""; display: block; padding-top: 56.25%; }
+    .video iframe {
+      position: absolute; inset: 0; width: 100%; height: 100%; border: 0;
+    }
 
-    .proj { padding: 18px; }
-    .proj h3 { margin: 0 0 8px; font-size: 16px; }
-    .proj p { margin: 0; color: var(--muted); font-size: 14px; }
+    .breakdown { margin-top: 22px; }
+    .breakdown h2 { font-size: 1.05rem; margin: 22px 0 8px; color: var(--accent); }
+    .breakdown ul { margin: 6px 0 10px 20px; padding: 0; }
+    .breakdown li { margin: 6px 0; }
+    .section { margin-top: 14px; }
 
-    .cta { display: flex; gap: 12px; margin-top: 18px; }
-    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 14px; border-radius: 12px; font-weight: 700; text-decoration: none; border: 1px solid rgba(255,255,255,.12); background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00)); color: var(--text); }
-    .btn:hover { transform: translateY(-1px); }
+    hr { border: none; border-top: 1px solid #232936; margin: 20px 0; }
 
-    footer { border-top: 1px solid rgba(255,255,255,.08); margin-top: 40px; padding: 24px 0 40px; color: var(--muted); }
-    .small { font-size: 13px; }
-    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+    /* Mobile */
+    @media (max-width: 900px) {
+      .wrap { grid-template-columns: 1fr; }
+      .sidebar { position: static; }
+    }
   </style>
 </head>
 <body>
-  <main class="container">
-    <section class="hero">
-      <div class="card pad">
-        <h1>Matthew R. Tucker</h1>
-        <p class="subtitle">Technical Artist</p>
-        <p>
-          A senior Technical Artist specializing in rigging and pipeline development, with experience in both AAA games and feature animation. Skilled in Unreal Engine and proprietary game engines, Python scripting, and diverse rigging techniques, delivering diverse solutions that enhance art and engineer’s efficiency and creative output.
-        </p>
-        <div class="cta">
-          <a class="btn" href="https://www.linkedin.com/in/matthew-r-tucker-88589612/" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="btn" href="https://vimeo.com/933041946" target="_blank" rel="noopener">Vimeo</a>
-        </div>
-      </div>
-      <div class="vimeo-wrap card" id="reel">
-        <iframe src="https://player.vimeo.com/video/933041946?h=0&title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Reel: Matthew R. Tucker"></iframe>
-      </div>
-    </section>
+  <main class="wrap">
+    <!-- LEFT: name / title / description -->
+    <aside class="sidebar" aria-label="Profile">
+      <h1 class="name">Matthew R. Tucker</h1>
+      <p class="title">Senior Technical Artist — Rigging & Pipeline</p>
+      <p class="desc">
+        A senior Technical Artist specializing in rigging and pipeline development, with experience in both AAA games and feature animation. Skilled in Unreal Engine and proprietary game engines, Python scripting, and diverse rigging techniques, delivering diverse solutions that enhance art and engineer’s efficiency and creative output.
+      </p>
+    </aside>
 
-    <section id="contact">
-      <h2>Contact</h2>
-      <div class="card pad">
-        <p>Best way to reach me is on <a href="https://www.linkedin.com/in/matthewrtucker/" target="_blank" rel="noopener">LinkedIn</a>.</p>
+    <!-- RIGHT: Reel header, Vimeo, and breakdown -->
+    <section class="content" aria-label="Reel">
+      <h2 class="h1">Animation &amp; Rigging Reel</h2>
+      <div class="video">
+        <!-- Replace the src with any Vimeo embed you prefer -->
+        <iframe src="https://player.vimeo.com/video/933041946?h=9e9a0c7d5f&title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Matthew R. Tucker Reel"></iframe>
+      </div>
+
+      <div class="breakdown" aria-label="Reel Breakdown">
+        <h2>Reel Breakdown:</h2>
+
+        <div class="section">
+          <h3>Venom</h3>
+          <ul>
+            <li>Face rig</li>
+            <li>Hand-sculpted FACS blendshapes for lips/eyes/teeth; joints for jaw/head/tongue; Havok for saliva</li>
+            <li>Worked with animation capture data</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h3>Scream</h3>
+          <ul>
+            <li>Face rig</li>
+            <li>Rapid, stripped-down rig based on Venom's rig</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h3>Metahuman Development</h3>
+          <ul>
+            <li>Manipulated to work with multiple body archetypes (civ female/male, enemy female/male, enemy heavy)</li>
+            <li>Compatible with open world, gameplay, and cinematics</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h3>General Face Rigging / Tools</h3>
+          <ul>
+            <li>Tools to warp facial hair to fit all face types</li>
+            <li>Rigs for spline hair</li>
+            <li>Collaboration and ingestion of 3rd-party facial rigs from 3Lateral</li>
+            <li>Maintenance to hide the seam between separate body and head rigs</li>
+            <li>Forking head rigs to work with different outfits/skeletons</li>
+            <li>Warped rigs to work on heroically proportioned enemies</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h3>Lizard</h3>
+          <ul>
+            <li>Spike rigging to prevent Spider-Man's suit from getting impaled</li>
+          </ul>
+        </div>
+
+        <hr />
+
+        <div class="section">
+          <h3>Not featured in the reel, and shoutouts</h3>
+          <ul>
+            <li>None of this was possible without the talented team at Insomniac &mdash; especially the Tech Animation team</li>
+            <li>Initial face rigging pipeline built by Noah Alzayer</li>
+            <li>Initial Scream shapes sculpted by Matthew Lefferts</li>
+            <li>Creative rigs for cut content</li>
+            <li>Rapid rig prototypes for internal game jam</li>
+            <li>Collaborated with Epic Games on an early version of MetaHuman</li>
+            <li>Maintenance of legacy head rigs from multiple games and different studios</li>
+            <li>Added neck rigging component</li>
+            <li>Guided animation workflows for complicated characters:
+              <ul>
+                <li>Pose libraries</li>
+                <li>Animation bibles</li>
+                <li>Patch notes for each rigging update</li>
+                <li>Video breakdowns</li>
+              </ul>
+            </li>
+            <li>Scrambled to put together rigs for the 2021 announcement trailer</li>
+            <li>Assisted in refactoring the internal modular rigging system (tool built by Alan Weider)</li>
+            <li>Multiple Simplygon recipes to maintain head seam across LODs</li>
+            <li>Guinea pig for new internal face rigging process (tool built by Josh DiCarlo)</li>
+            <li>Added functionality for the scene assembly tool to enable loading/unloading/swapping of face rigs</li>
+            <li>Authored most steps in the internal rig validation tool (tool built by Daniel McCrummen)</li>
+          </ul>
+        </div>
       </div>
     </section>
   </main>
-
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
