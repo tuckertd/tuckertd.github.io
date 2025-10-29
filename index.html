@@ -2,17 +2,67 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Matthew R. Tucker — Technical Artist Portfolio</title>
+
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="Matthew R. Tucker — Technical Artist Portfolio" />
+  <meta name="description" content="Portfolio of Matthew R. Tucker — Technical Artist specializing in rigging, rigs, animation systems, game engine integration, and procedural pipelines for games and film." />
+  <meta name="keywords" content="Technical Artist, Rigging, Unreal Engine, Maya, Bifrost, Animation Pipeline, Procedural Rigging, Game Development, Facial Rigging, VFX, Insomniac Games, Autodesk, DreamWorks, Face Rig, Technical Animator, Creature Rigging, MetaHuman" />
+  <meta name="author" content="Matthew R. Tucker" />
+  <link rel="canonical" href="https://www.tuckertd.com/" />
+
+  <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="16x16" href="robot_icon.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="robot_icon.png" />
   <link rel="icon" type="image/png" sizes="96x96" href="robot_icon.png" />
-  <meta property="og:title" content="Matthew R. Tucker — Technical Artist" />
-  <meta property="og:description" content="A Technical Artist specializing in rigging, animation, and pipeline development for games and film." />
-  <meta property="og:url" content="https://tuckertd.com/" />
-  <meta property="og:image" content="https://tuckertd.com/thumbnail.jpg" />
+
+  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
-  <meta name="description" content="Portfolio of Matthew R. Tucker — Technical Artist specializing in rigging, animation, and procedural pipelines for games and film." />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Matthew R. Tucker — Technical Artist</title>
+  <meta property="og:url" content="https://www.tuckertd.com/" />
+  <meta property="og:title" content="Matthew R. Tucker — Technical Artist" />
+  <meta property="og:description" content="Senior Technical Artist specializing in rigging, animation, and procedural pipelines for games and film." />
+  <meta property="og:image" content="https://www.tuckertd.com/thumbnail.jpg" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://www.tuckertd.com/" />
+  <meta name="twitter:title" content="Matthew R. Tucker — Technical Artist" />
+  <meta name="twitter:description" content="Senior Technical Artist specializing in rigging, animation, and procedural pipelines for games and film." />
+  <meta name="twitter:image" content="https://www.tuckertd.com/thumbnail.jpg" />
+
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Matthew R. Tucker",
+    "url": "https://www.tuckertd.com",
+    "image": "https://www.tuckertd.com/thumbnail.jpg",
+    "jobTitle": "Senior Technical Artist",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Insomniac Games"
+    },
+    "description": "Senior Technical Artist specializing in rigging, animation systems, Unreal Engine, and procedural pipelines for games and film.",
+    "sameAs": [
+      "https://www.linkedin.com/in/matthew-r-tucker-88589612/",
+      "https://vimeo.com/tuckertd",
+    ]
+  }
+  </script>
+
+  <!-- Analytics (Google GA4 – replace G-XXXXXXX with your ID) -->
+  <!-- Optional: you can comment out if not using GA -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXX');
+  </script>
+
+  <!-- Styles -->
   <style>
     :root {
       --bg: #0f1115;
@@ -24,7 +74,6 @@
     }
 
     html, body { height: 100%; }
-
     body {
       margin: 0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica, Arial, sans-serif;
@@ -78,7 +127,6 @@
     }
     .btn:hover { background: #a9daff; }
 
-    /* content card */
     .content {
       background: var(--panel);
       border: 1px solid #1f2430;
@@ -93,7 +141,6 @@
     .video::before { content: ""; display: block; padding-top: 56.25%; }
     .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 
-    /* collapsible breakdown */
     details.accordion {
       margin-top: 16px;
       border: 1px solid #232936;
@@ -126,15 +173,9 @@
 
     hr { border: none; border-top: 1px solid #232936; margin: 20px 0; }
 
-    /* responsive layout */
-    @media (min-width: 901px) {
-      .video-card { grid-column: 2; }
-    }
-
     @media (max-width: 900px) {
       .wrap { grid-template-columns: 1fr; }
       .sidebar { position: static; }
-      .video-card { grid-column: 1; }
       .content { padding: 18px; }
     }
 
