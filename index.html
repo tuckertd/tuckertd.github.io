@@ -70,12 +70,11 @@
       --text: #e8ecf1;
       --muted: #9aa7b2;
       --accent: #82c8ff;
-      --maxw: 1200px;
+      --maxw: 1600px;
     }
 
-    html, body { height: 100%; }
+    html, body { height: 100%; margin: 0; }
     body {
-      margin: 0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica, Arial, sans-serif;
       background: var(--bg);
       color: var(--text);
@@ -84,55 +83,38 @@
 
     a { color: var(--accent); text-decoration: none; }
 
-    .wrap {
+    .layout {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 32px;
       max-width: var(--maxw);
       margin: 0 auto;
-      padding: 32px 20px 56px;
-      display: flex;
-      flex-direction: column;
-      gap: 28px;
+      padding: 32px 20px;
     }
     
-    .sidebar {
-      order: 1;
-    }
-    
-    .content {
-      flex: 1;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-    
-    .video-card {
-      order: 2;
-      width: 100%;
-    }
-
-    .sidebar {
-      position: sticky;
-      top: 20px;
-      align-self: start;
+    .sidebar-fixed {
+      position: fixed;
+      top: 32px;
+      left: 32px;
+      width: 280px;
       background: var(--panel);
       border: 1px solid #1f2430;
       border-radius: 16px;
-      padding: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.3);
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, .3);
+      height: calc(100vh - 64px);
+      overflow-y: auto;
+      scrollbar-width: thin;
     }
-
+    
+    
     .name { font-size: 1.6rem; font-weight: 700; margin: 0 0 6px; }
     .title { color: var(--muted); margin: 0 0 14px; font-weight: 600; }
     .desc { margin: 0 0 18px; color: #d8dde4; }
-
-    .btns {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 10px;
-    }
-
+    
+    
+    .btns { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
     .btn {
-      display: inline-block;
       background: var(--accent);
       color: #0f1115;
       font-weight: 600;
@@ -142,70 +124,39 @@
       transition: background 0.2s;
     }
     .btn:hover { background: #a9daff; }
-
-    .content {
+    
+    
+    .content-area {
+      margin-left: 360px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    
+    .video-card {
       background: var(--panel);
       border: 1px solid #1f2430;
       border-radius: 16px;
       padding: 22px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
     }
-
+    
     .h1 { font-size: 1.25rem; margin: 0 0 12px; letter-spacing: .2px; }
-
+    
     .video { position: relative; width: 100%; border-radius: 12px; overflow: hidden; background: #000; }
     .video::before { content: ""; display: block; padding-top: 56.25%; }
     .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-
-    details.accordion {
-      margin-top: 16px;
-      border: 1px solid #232936;
-      border-radius: 12px;
-      overflow: hidden;
-    }
-
-    details.accordion > summary {
-      list-style: none;
-      cursor: pointer;
-      padding: 14px 16px;
-      font-weight: 600;
-      color: var(--text);
-      background: #161c27;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      user-select: none;
-    }
-
-    details.accordion > summary::-webkit-details-marker { display: none; }
-    .caret { display: inline-block; transition: transform .2s ease; }
-    details[open] .caret { transform: rotate(90deg); }
-    .accordion-inner { padding: 14px 18px; }
-
-    .breakdown h2 { font-size: 1.05rem; margin: 6px 0 8px; color: var(--accent); }
-    .breakdown ul { margin: 6px 0 10px 20px; padding: 0; }
-    .breakdown li { margin: 6px 0; }
-    .section { margin-top: 14px; }
-
-    hr { border: none; border-top: 1px solid #232936; margin: 20px 0; }
-
+    
     @media (max-width: 900px) {
-      .wrap { grid-template-columns: 1fr; }
-      .sidebar { position: static; }
-      .content { padding: 18px; }
-    }
-
-    @media (max-width: 420px) {
-      .name { font-size: 1.35rem; }
-      .title { font-size: 0.95rem; }
-      .btns { gap: 8px; }
-      .btn { padding: 9px 14px; font-size: 0.95rem; }
+      .layout { display: flex; flex-direction: column; }
+      .sidebar-fixed { position: static; width: auto; height: auto; overflow: visible; margin-bottom: 20px; }
+      .content-area { margin-left: 0; }
     }
   </style>
 </head>
 <body>
-  <main class="wrap">
-    <aside class="sidebar" aria-label="Profile">
+  <main class="layout">
+    <aside class="sidebar-fixed" aria-label="Profile">
       <h1 class="name">Matthew R. Tucker</h1>
       <p class="title">Technical Artist</p>
       <p class="desc">
