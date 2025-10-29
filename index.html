@@ -89,13 +89,12 @@
       margin: 0 auto;
       padding: 32px 20px 56px;
       display: flex;
-      flex-direction: row;
-      align-items: flex-start;
+      flex-direction: column;
       gap: 28px;
     }
     
     .sidebar {
-      flex: 0 0 320px;
+      order: 1;
     }
     
     .content {
@@ -106,8 +105,8 @@
     }
     
     .video-card {
-      flex: 1 1 calc(50% - 20px); /* 2 per row */
-      box-sizing: border-box;
+      order: 2;
+      width: 100%;
     }
 
     .sidebar {
