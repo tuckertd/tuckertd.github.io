@@ -53,7 +53,6 @@
   </script>
 
   <!-- Analytics (Google GA4 – replace G-XXXXXXX with your ID) -->
-  <!-- Optional: you can comment out if not using GA -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -70,365 +69,502 @@
       --text: #e8ecf1;
       --muted: #9aa7b2;
       --accent: #82c8ff;
-      --maxw: 1600px;
+      --accent-hover: #a9daff;
+      --border: #1f2430;
     }
 
-    html, body { height: 100%; margin: 0; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body { 
+      height: 100%; 
+      margin: 0; 
+    }
+
     body {
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica, Arial, sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.55;
+      line-height: 1.6;
     }
 
-    a { color: var(--accent); text-decoration: none; }
+    a { 
+      color: var(--accent); 
+      text-decoration: none; 
+      transition: color 0.2s ease;
+    }
 
+    a:hover {
+      color: var(--accent-hover);
+    }
+
+    /* Layout */
     .layout {
-      display: grid;
-      grid-template-columns: 340px 1fr;
-      gap: 32px;
-      max-width: var(--maxw);
-      margin: 0 auto;
-      padding: 32px 20px;
+      display: flex;
+      min-height: 100vh;
     }
-    
-    .sidebar-fixed {
+
+    /* Sidebar */
+    .sidebar {
       position: fixed;
-      top: 32px;
-      left: 32px;
-      width: 280px;
-      background: var(--panel);
-      border: 1px solid #1f2430;
-      border-radius: 16px;
-      padding: 24px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, .3);
-      height: calc(100vh - 64px);
+      left: 0;
+      top: 0;
+      width: 360px;
+      height: 100vh;
+      background: linear-gradient(135deg, #1a1e2e 0%, #141821 100%);
+      border-right: 1px solid var(--border);
       overflow-y: auto;
       scrollbar-width: thin;
+      scrollbar-color: var(--accent) transparent;
+      z-index: 100;
     }
-    
-    
-    .name { font-size: 1.6rem; font-weight: 700; margin: 0 0 6px; }
-    .title { color: var(--muted); margin: 0 0 14px; font-weight: 600; }
-    .desc { margin: 0 0 18px; color: #d8dde4; }
-    
-    
-    .btns { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
-    .btn {
+
+    .sidebar::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .sidebar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .sidebar::-webkit-scrollbar-thumb {
       background: var(--accent);
-      color: #0f1115;
-      font-weight: 600;
-      text-decoration: none;
-      padding: 10px 16px;
-      border-radius: 8px;
-      transition: background 0.2s;
+      border-radius: 4px;
     }
-    .btn:hover { background: #a9daff; }
-    
-    
-    .content-area {
-      margin-left: 360px;
+
+    .profile {
+      padding: 48px 32px;
       display: flex;
       flex-direction: column;
       gap: 24px;
     }
-    
+
+    .profile-header {
+      text-align: center;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(130, 200, 255, 0.2);
+    }
+
+    .name {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, var(--accent) 0%, #b8e0ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.5px;
+    }
+
+    .title {
+      color: var(--muted);
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .desc {
+      color: #d8dde4;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .btns {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .btn {
+      background: var(--accent);
+      color: #0f1115;
+      font-weight: 600;
+      text-align: center;
+      padding: 14px 20px;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(130, 200, 255, 0.2);
+    }
+
+    .btn:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(130, 200, 255, 0.3);
+    }
+
+    /* Main Content */
+    .content-area {
+      margin-left: 360px;
+      width: calc(100% - 360px);
+      padding: 48px 64px;
+      max-width: 1200px;
+    }
+
     .video-card {
       background: var(--panel);
-      border: 1px solid #1f2430;
+      border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 22px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
+      padding: 32px;
+      margin-bottom: 32px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-    
-    .h1 { font-size: 1.25rem; margin: 0 0 12px; letter-spacing: .2px; }
-    
-    .video { position: relative; width: 100%; border-radius: 12px; overflow: hidden; background: #000; }
-    .video::before { content: ""; display: block; padding-top: 56.25%; }
-    .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-    
-    @media (max-width: 900px) {
-      .layout { display: flex; flex-direction: column; }
-      .sidebar-fixed { position: static; width: auto; height: auto; overflow: visible; margin-bottom: 20px; }
-      .content-area { margin-left: 0; }
+
+    .video-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+    }
+
+    .video-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--text);
+      letter-spacing: -0.3px;
+    }
+
+    .video-container {
+      position: relative;
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #000;
+      margin-bottom: 20px;
+    }
+
+    .video-container::before {
+      content: "";
+      display: block;
+      padding-top: 56.25%;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* Accordion */
+    .accordion {
+      margin-top: 16px;
+    }
+
+    .accordion summary {
+      cursor: pointer;
+      padding: 12px 16px;
+      background: rgba(130, 200, 255, 0.1);
+      border-radius: 8px;
+      font-weight: 600;
+      list-style: none;
+      transition: background 0.2s ease;
+      user-select: none;
+    }
+
+    .accordion summary:hover {
+      background: rgba(130, 200, 255, 0.15);
+    }
+
+    .accordion summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .caret {
+      display: inline-block;
+      margin-right: 8px;
+      transition: transform 0.2s ease;
+    }
+
+    .accordion[open] .caret {
+      transform: rotate(90deg);
+    }
+
+    .accordion-inner {
+      padding: 20px 16px;
+      color: #d8dde4;
+      line-height: 1.7;
+    }
+
+    .accordion-inner p {
+      margin-bottom: 16px;
+    }
+
+    .accordion-inner h3 {
+      margin: 24px 0 12px;
+      color: var(--accent);
+      font-size: 1.1rem;
+    }
+
+    .accordion-inner ul {
+      margin-left: 20px;
+      margin-bottom: 16px;
+    }
+
+    .accordion-inner li {
+      margin-bottom: 8px;
+    }
+
+    .section {
+      margin: 24px 0;
+    }
+
+    .section img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 8px;
+    }
+
+    .section p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 16px;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .sidebar {
+        position: static;
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .content-area {
+        margin-left: 0;
+        width: 100%;
+        padding: 32px 24px;
+      }
+
+      .layout {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .profile {
+        padding: 32px 20px;
+      }
+
+      .name {
+        font-size: 1.5rem;
+      }
+
+      .video-card {
+        padding: 24px;
+      }
+
+      .video-title {
+        font-size: 1.25rem;
+      }
+
+      .content-area {
+        padding: 24px 16px;
+      }
     }
   </style>
 </head>
 <body>
-  <main class="layout">
-    <aside class="sidebar-fixed" aria-label="Profile">
-      <h1 class="name">Matthew R. Tucker</h1>
-      <p class="title">Technical Artist</p>
-      <p class="desc">
-        A senior Technical Artist specializing in rigging and pipeline development, with experience in both AAA games and feature animation. Skilled in Unreal Engine and proprietary game engines, Python scripting, and diverse rigging techniques, delivering diverse solutions that enhance artists’ and engineers’ efficiency and creative output.
-      </p>
-      <div class="btns">
-        <a href="https://www.linkedin.com/in/matthew-r-tucker-88589612/" target="_blank" class="btn">LinkedIn</a>
-        <a href="https://vimeo.com/tuckertd" target="_blank" class="btn">Vimeo</a>
-        <a href="mtucker_resume.pdf" download class="btn">Resume (PDF)</a>
+  <div class="layout">
+    <!-- Sidebar Profile -->
+    <aside class="sidebar" aria-label="Profile">
+      <div class="profile">
+        <div class="profile-header">
+          <h1 class="name">Matthew R. Tucker</h1>
+          <p class="title">Technical Artist</p>
+        </div>
+        
+        <p class="desc">
+          A senior Technical Artist specializing in rigging and pipeline development, with experience in both AAA games and feature animation. Skilled in Unreal Engine and proprietary game engines, Python scripting, and diverse rigging techniques, delivering diverse solutions that enhance artists' and engineers' efficiency and creative output.
+        </p>
+        
+        <div class="btns">
+          <a href="https://www.linkedin.com/in/matthew-r-tucker-88589612/" target="_blank" class="btn">LinkedIn</a>
+          <a href="https://vimeo.com/tuckertd" target="_blank" class="btn">Vimeo</a>
+          <a href="mtucker_resume.pdf" download class="btn">Resume (PDF)</a>
+        </div>
       </div>
     </aside>
 
-    <!-- VIDEO CARD 1 -->
-    <section class="content video-card" aria-label="Reel">
-      <h2 class="h1">Spiderman 2 Technical Art Reel</h2>
-      <div class="video">
-        <iframe
-          src="https://player.vimeo.com/video/933041946?h=9e9a0c7d5f&title=0&byline=0&portrait=0"
-          allow="autoplay; fullscreen; picture-in-picture"
-          allowfullscreen
-          title="Spiderman 2 Reel">
-        </iframe>
-      </div>
-
-      <details class="accordion">
-        <summary aria-label="Toggle breakdown"><span class="caret">▶</span> Reel Breakdown</summary>
-        <div class="accordion-inner">
-          <div class="breakdown" aria-label="Reel Breakdown">
-            <div class="section">
-              <h3>Venom</h3>
-              <ul>
-                <li>Face rig</li>
-                <li>Hand-sculpted FACS blendshapes for lips/eyes/teeth; joints for jaw/head/tongue; Havok for saliva</li>
-                <li>Worked with animation capture data</li>
-              </ul>
-            </div>
-
-            <div class="section">
-              <h3>Scream</h3>
-              <ul>
-                <li>Face rig</li>
-                <li>Rapid, stripped-down rig based on Venom's rig</li>
-              </ul>
-            </div>
-
-            <div class="section">
-              <h3>Metahuman Development</h3>
-              <ul>
-                <li>Manipulated to work with multiple body archetypes (civ female/male, enemy female/male, enemy heavy)</li>
-                <li>Compatible with open world, gameplay, and cinematics</li>
-              </ul>
-            </div>
-
-            <div class="section">
-              <h3>General Face Rigging / Tools</h3>
-              <ul>
-                <li>Tools to warp facial hair to fit all face types</li>
-                <li>Rigs for spline hair</li>
-                <li>Collaboration and ingestion of 3rd-party facial rigs from 3Lateral</li>
-                <li>Maintenance to hide the seam between separate body and head rigs</li>
-                <li>Forking head rigs to work with different outfits/skeletons</li>
-                <li>Warped rigs to work on heroically proportioned enemies</li>
-              </ul>
-            </div>
-
-            <div class="section">
-              <h3>Lizard</h3>
-              <ul>
-                <li>Spike rigging to prevent Spider-Man's suit from getting impaled</li>
-              </ul>
-            </div>
-
-            <div class="section">
-              <h3>Not featured in the reel, and shoutouts</h3>
-              <ul>
-                <li>None of this was possible without the talented team at Insomniac — especially the Tech Animation team</li>
-                <li>Initial face rigging pipeline built by Noah Alzayer</li>
-                <li>Initial Scream shapes sculpted by Matthew Lefferts</li>
-                <li>Creative rigs for cut content</li>
-                <li>Rapid rig prototypes for internal game jam</li>
-                <li>Collaborated with Epic Games on an early version of MetaHuman</li>
-                <li>Maintenance of legacy head rigs from multiple games and different studios</li>
-                <li>Added neck rigging component</li>
-                <li>Guided animation workflows for complicated characters:
-                  <ul>
-                    <li>Pose libraries</li>
-                    <li>Animation bibles</li>
-                    <li>Patch notes for each rigging update</li>
-                    <li>Video breakdowns</li>
-                  </ul>
-                </li>
-                <li>Scrambled to put together rigs for the 2021 announcement trailer</li>
-                <li>Assisted in refactoring the internal modular rigging system (tool built by Alan Weider)</li>
-                <li>Multiple Simplygon recipes to maintain head seam across LODs</li>
-                <li>Guinea pig for new internal face rigging process (tool built by Josh DiCarlo)</li>
-                <li>Added functionality for the scene assembly tool to enable loading/unloading/swapping of face rigs</li>
-                <li>Authored most steps in the internal rig validation tool (tool built by Daniel McCrummen)</li>
-              </ul>
-            </div>
-          </div>
+    <!-- Main Content Area -->
+    <main class="content-area">
+      
+      <!-- VIDEO CARD 1 -->
+      <section class="video-card" aria-label="Reel">
+        <h2 class="video-title">Spiderman 2 Technical Art Reel</h2>
+        <div class="video-container">
+          <iframe
+            src="https://player.vimeo.com/video/1039652518?title=0&byline=0&portrait=0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            title="Spiderman 2 Technical Art Reel">
+          </iframe>
         </div>
-      </details>
-    </section>
-
-    <!-- VIDEO CARD 2 -->
-    <section class="content video-card" aria-label="Ratchet &amp; Clank: Rift Apart Technical Art Reel">
-      <h2 class="h1">Ratchet &amp; Clank: Rift Apart Technical Art Reel</h2>
-      <div class="video">
-        <iframe
-          src="https://player.vimeo.com/video/784464739?title=0&byline=0&portrait=0"
-          allow="autoplay; fullscreen; picture-in-picture"
-          allowfullscreen
-          title="Rift Apart Reel">
-        </iframe>
-      </div>
-      <details class="accordion">
-        <summary><span class="caret">▶</span> Reel Breakdown</summary>
-        <div class="accordion-inner">
-          <p>I was welcomed onto this project late into production and my tasks were to evaluate the main characters, Ratchet and Rivet, and help get them across the finish line.</p>
-          <div class="breakdown">
-            <h3>Reel Breakdown:</h3>
-            <ul>
-              <li>Ratchet face polish</li>
-              <li>Armor rigging/workflow (optimized process so individual Character TDs could absorb all armors)</li>
-              <li>Rivet face polish</li>
-            </ul>
-          </div>
-        </div>
-      </details>
-    </section>
-    <!-- VIDEO CARD 3 -->
-    <section class="content video-card" aria-label="Autodesk Bifrost Tutorial Series">
-      <h2 class="h1">Autodesk Bifrost Rigging Modules Tutorial Series</h2>
-      <div class="video">
-        <iframe
-          src="https://www.youtube.com/embed/videoseries?list=PL8hZ6hQCGHMXKrjYPMCPC0A7XXHDryA45"
-          title="Autodesk Bifrost Rigging Modules Tutorial Series"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen>
-        </iframe>
-      </div>
-    
-      <details class="accordion">
-        <summary><span class="caret">▶</span> Playlist Description</summary>
-        <div class="accordion-inner">
-          <p>
-            Collaborated with Autodesk to design and implement a modular biped rig built with
-            Bifrost Rigging Modules, showcasing procedural workflows and advanced animation controls.
-            The resulting tutorial series demonstrates how to create, customize,
-            and integrate Bifrost rigging modules. Hopefully empowering future artists and technical teams to
-            explore a new procedural approach to rigging and animation.
-          </p>
-        </div>
-      </details>
-    </section>
-    <!-- VIDEO CARD 4 -->
-    <section class="content video-card" aria-label="Unreal Engine Rigging &amp; Animation Exploration">
-      <h2 class="h1">Unreal Engine Rigging & Animation Exploration</h2>
-      <div class="video">
-        <iframe
-          src="https://player.vimeo.com/video/1128299171?title=0&byline=0&portrait=0"
-          allow="autoplay; fullscreen; picture-in-picture"
-          style="position:absolute;top:0;left:0;width:100%;height:100%;"
-          title="Unreal Engine Exploration">
-        </iframe>
-      </div>
-      <details class="accordion">
-        <summary><span class="caret">▶</span> Project Description</summary>
-        <div class="accordion-inner">
-          <p>
-            I created this fan-art of Shark Kitty to test Unreal Engine 5.5’s new animation and rigging features.
-            Using Maya for modeling and morph targets, Substance and GIMP for texturing, and Unreal for materials, rigging, and animation,
-            I explored the modular Control Rig system’s potential and limits. Specifically how far I could push it considering it's
-            limited flexibility for extreme squash and stretch. To meet mobile skeleton constraints (<75 bones),
-            I built custom rig components and designed a custom 3-bone IK solution that maintained consistent femur and tarsal alignment,
-            including a procedural secondary IK chain driven by iterative “For Loop” nodes. This project was a deep dive
-            into Unreal’s evolving rigging ecosystem. While powerful yet it's still maturing.
-            Despite some friction with vertex selection and morph-target stacking,
-            the process showcased Unreal’s promise as a standalone DCC for animation.
-            Many thanks to Peter Sandeman and Warren Wang for their help,
-            and full credit to Yogin, the original creator of Shark Kitty.
-          </p>
-        </div>
-      </details>
-    </section>
-    <!-- VIDEO CARD 5 -->
-    <section class="content video-card" aria-label="Animated Short Look Test">
-      <h2 class="h1">Animated Short Look Test</h2>
-      <div class="video">
-        <iframe
-          src="https://player.vimeo.com/video/394362759?title=0&byline=0&portrait=0"
-          allow="autoplay; fullscreen; picture-in-picture"
-          style="position:absolute;top:0;left:0;width:100%;height:100%;"
-          title="Animated Short Look Test">
-        </iframe>
-      </div>
-      <details class="accordion">
-        <summary><span class="caret">▶</span> Look Test Description</summary>
+        <details class="accordion">
+          <summary><span class="caret">▶</span> Reel Description</summary>
           <div class="accordion-inner">
-          <div class="section">
-            <p> While at Dreamworks Animation, I had a once in a lifetime opportunity to direct a short that was very close to my heart. One day I hope to have the skillset to finish this project. I do want to celebrate the people who were such a blessing to work with. This look test was created for the short film, exploring the visual style and character rendering. Special thanks to the talented artists who brought this to life:</p>
-            <p>Modeling: Hyun Huh</p>
-            <p>LookDev &amp; FX: Yancy Lindquist</p>
+            <p>
+              I contributed to Spiderman 2 as a Technical Artist. One of my primary responsibilities was building the facial rig workflow for MetaHumans in Unreal Engine, integrating mocap animation from Maya to Unreal. This pipeline streamlined the transition between Maya and Unreal, reduced facial development time for mocap facial shots by 30%, and improved efficiency for both tech artists and animators. I focused on creating tools and workflows that allowed the team to consistently deliver high-quality facial work while minimizing friction across departments.
+            </p>
+            <h3>What Was Showcased in the Reel</h3>
+            <p>
+              The reel features a MetaHuman head test that demonstrates the workflow from mocap animation in Maya to final integration in Unreal Engine. This example illustrates the facial rig deformation pipeline I helped establish.
+            </p>
           </div>
+        </details>
+      </section>
 
-          <div class="section" aria-label="Quigley Gallery">
-            <div style="display:flex; flex-direction:column; gap:20px; margin-top:10px;">
-              <img src="quigley_title_card.jpg" alt="Quigley Title Card" style="width:100%; border-radius:12px;" />
-              <p> By Ramone Zibach </p>
-              <img src="quigley_RB.jpg" alt="Initial Character Exploration" style="width:100%; border-radius:12px;" />
-              <p> By Rune Bennicke </p>
-              <img src="quigley_BW.jpg" alt="Quigley Painting Scene" style="width:100%; border-radius:12px;" />
-              <p> By Brian Wang </p>
-              <img src="quigley_JM.jpg" alt="Final Character Exploration" style="width:100%; border-radius:12px;" />
-              <p> By Joe Moshier </p>
+      <!-- VIDEO CARD 2 -->
+      <section class="video-card" aria-label="Autodesk Bifrost Face Rig">
+        <h2 class="video-title">Autodesk Bifrost Face Rig</h2>
+        <div class="video-container">
+          <iframe
+            src="https://player.vimeo.com/video/950612009?title=0&byline=0&portrait=0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            title="Autodesk Bifrost Face Rig">
+          </iframe>
+        </div>
+        <details class="accordion">
+          <summary><span class="caret">▶</span> Rig Overview</summary>
+          <div class="accordion-inner">
+            <p>
+              I collaborated with Autodesk to design and implement a modular face rig using Autodesk Bifrost Procedural Rigging. This tool provides a template-based workflow that allows riggers to create and customize facial rigs, reducing repetitive work and enabling more iteration at early stages. One of its key strengths is the ability to automatically adjust the rig as geometry changes, making it ideal for facial capture production pipelines where geometry frequently shifts. I've intentionally left the rig overcomplicated for demonstration purposes. The Bifrost Procedural Face Rig code is available on my Vimeo, offering a deep dive into the structure of modular rigging workflows.
+            </p>
+          </div>
+        </details>
+      </section>
+
+      <!-- VIDEO CARD 3 -->
+      <section class="video-card" aria-label="Autodesk Bifrost Rigging Modules Tutorial Series">
+        <h2 class="video-title">Autodesk Bifrost Rigging Modules Tutorial Series</h2>
+        <div class="video-container">
+          <iframe
+            src="https://www.youtube.com/embed/videoseries?list=PL8hZ6hQCGHMXKrjYPMCPC0A7XXHDryA45"
+            title="Autodesk Bifrost Rigging Modules Tutorial Series"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <details class="accordion">
+          <summary><span class="caret">▶</span> Playlist Description</summary>
+          <div class="accordion-inner">
+            <p>
+              Collaborated with Autodesk to design and implement a modular biped rig built with Bifrost Rigging Modules, showcasing procedural workflows and advanced animation controls. The resulting tutorial series demonstrates how to create, customize, and integrate Bifrost rigging modules. Hopefully empowering future artists and technical teams to explore a new procedural approach to rigging and animation.
+            </p>
+          </div>
+        </details>
+      </section>
+
+      <!-- VIDEO CARD 4 -->
+      <section class="video-card" aria-label="Unreal Engine Rigging &amp; Animation Exploration">
+        <h2 class="video-title">Unreal Engine Rigging & Animation Exploration</h2>
+        <div class="video-container">
+          <iframe
+            src="https://player.vimeo.com/video/1128299171?title=0&byline=0&portrait=0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            title="Unreal Engine Exploration">
+          </iframe>
+        </div>
+        <details class="accordion">
+          <summary><span class="caret">▶</span> Project Description</summary>
+          <div class="accordion-inner">
+            <p>
+              I created this fan-art of Shark Kitty to test Unreal Engine 5.5's new animation and rigging features. Using Maya for modeling and morph targets, Substance and GIMP for texturing, and Unreal for materials, rigging, and animation, I explored the modular Control Rig system's potential and limits. Specifically how far I could push it considering it's limited flexibility for extreme squash and stretch. To meet mobile skeleton constraints (<75 bones), I built custom rig components and designed a custom 3-bone IK solution that maintained consistent femur and tarsal alignment, including a procedural secondary IK chain driven by iterative "For Loop" nodes. This project was a deep dive into Unreal's evolving rigging ecosystem. While powerful yet it's still maturing. Despite some friction with vertex selection and morph-target stacking, the process showcased Unreal's promise as a standalone DCC for animation. Many thanks to Peter Sandeman and Warren Wang for their help, and full credit to Yogin, the original creator of Shark Kitty.
+            </p>
+          </div>
+        </details>
+      </section>
+
+      <!-- VIDEO CARD 5 -->
+      <section class="video-card" aria-label="Animated Short Look Test">
+        <h2 class="video-title">Animated Short Look Test</h2>
+        <div class="video-container">
+          <iframe
+            src="https://player.vimeo.com/video/394362759?title=0&byline=0&portrait=0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            title="Animated Short Look Test">
+          </iframe>
+        </div>
+        <details class="accordion">
+          <summary><span class="caret">▶</span> Look Test Description</summary>
+          <div class="accordion-inner">
+            <div class="section">
+              <p>While at Dreamworks Animation, I had a once in a lifetime opportunity to direct a short that was very close to my heart. One day I hope to have the skillset to finish this project. I do want to celebrate the people who were such a blessing to work with. This look test was created for the short film, exploring the visual style and character rendering. Special thanks to the talented artists who brought this to life:</p>
+              <p>Modeling: Hyun Huh</p>
+              <p>LookDev &amp; FX: Yancy Lindquist</p>
+            </div>
+
+            <div class="section" aria-label="Quigley Gallery">
+              <div style="display:flex; flex-direction:column; gap:20px; margin-top:10px;">
+                <img src="quigley_title_card.jpg" alt="Quigley Title Card" />
+                <p>By Ramone Zibach</p>
+                <img src="quigley_RB.jpg" alt="Initial Character Exploration" />
+                <p>By Rune Bennicke</p>
+                <img src="quigley_BW.jpg" alt="Quigley Painting Scene" />
+                <p>By Brian Wang</p>
+                <img src="quigley_JM.jpg" alt="Final Character Exploration" />
+                <p>By Joe Moshier</p>
+              </div>
+            </div>
+
+            <div class="section" aria-label="Quigley Credits">
+              <h3>Credits</h3>
+              <ul style="columns: 2; margin: 0; padding-left: 20px;">
+                <li>Jeffrey Hermann</li>
+                <li>Jennifer Howell</li>
+                <li>Chris deFaria</li>
+                <li>Jon Schmidt</li>
+                <li>Matthew Tucker</li>
+                <li>Raymond Zibach</li>
+                <li>Hamish Grieve</li>
+                <li>Brian Wang</li>
+                <li>Brendan Murphy</li>
+                <li>Kirsten Kawamura</li>
+                <li>Rune Bennicke</li>
+                <li>Patrick Walsh</li>
+                <li>Matt Baer</li>
+                <li>Jeff Budsberg</li>
+                <li>Jill Hopper</li>
+                <li>Joe Moshier</li>
+                <li>Chris Meinen</li>
+                <li>Andy Erekson</li>
+                <li>Bill Otsuka</li>
+                <li>Hyun Huh</li>
+                <li>Stan Seo</li>
+                <li>Yancy Lindquist</li>
+                <li>CK Horness</li>
+                <li>James Ryan</li>
+                <li>Mark Fitzgerald</li>
+                <li>Jay Bixsen</li>
+                <li>Sean Choi</li>
+                <li>Orlando Duenas</li>
+                <li>Arin Mathern</li>
+                <li>Meghan Shearer</li>
+                <li>Damon Obeirne</li>
+              </ul>
             </div>
           </div>
+        </details>
+      </section>
 
-          <div class="section" aria-label="Quigley Credits">
-            <h3>Credits</h3>
-            <ul style="columns: 2; margin: 0; padding-left: 20px;">
-              <li>Jeffrey Hermann</li>
-              <li>Jennifer Howell</li>
-              <li>Chris deFaria</li>
-              <li>Jon Schmidt</li>
-              <li>Matthew Tucker</li>
-              <li>Raymond Zibach</li>
-              <li>Hamish Grieve</li>
-              <li>Brian Wang</li>
-              <li>Brendan Murphy</li>
-              <li>Kirsten Kawamura</li>
-              <li>Rune Bennicke</li>
-              <li>Patrick Walsh</li>
-              <li>Matt Baer</li>
-              <li>Jeff Budsberg</li>
-              <li>Jill Hopper</li>
-              <li>Joe Moshier</li>
-              <li>Chris Meinen</li>
-              <li>Andy Erekson</li>
-              <li>Bill Otsuka</li>
-              <li>Hyun Huh</li>
-              <li>Stan Seo</li>
-              <li>Yancy Lindquist</li>
-              <li>CK Horness</li>
-              <li>James Ryan</li>
-              <li>Mark Fitzgerald</li>
-              <li>Jay Bixsen</li>
-              <li>Sean Choi</li>
-              <li>Orlando Duenas</li>
-              <li>Arin Mathern</li>
-              <li>Meghan Shearer</li>
-              <li>Damon Obeirne</li>
-            </ul>
-          </div>
+      <!-- VIDEO CARD 6 -->
+      <section class="video-card" aria-label="Bad Guys Rigging Lead Showreel">
+        <h2 class="video-title">Bad Guys Rigging Lead Showreel</h2>
+        <div class="video-container">
+          <iframe
+            src="https://player.vimeo.com/video/779026055?title=0&byline=0&portrait=0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            title="Bad Guys Rigging Lead Showreel">
+          </iframe>
         </div>
-      </details>
-    </section>    <!-- VIDEO CARD 6 -->
-    <section class="content video-card" aria-label="Bad Guys Rigging Lead Showreel">
-      <h2 class="h1">Bad Guys Rigging Lead Showreel</h2>
-      <div class="video">
-        <iframe
-          src="https://player.vimeo.com/video/779026055?title=0&byline=0&portrait=0"
-          allow="autoplay; fullscreen; picture-in-picture"
-          style="position:absolute;top:0;left:0;width:100%;height:100%;"
-          title="Bad Guys Rigging Lead Showreel">
-        </iframe>
-      </div>
-      <details class="accordion">
-        <summary><span class="caret">▶</span> Reel Breakdown</summary>
-        <div class="accordion-inner">
-          <p>
-            <p>As the Body Rigging Lead for The Bad Guys, my responsibilities were to establish standards across the show, help develop techniques to achieve the film’s distinctive stylized look, and build workflows that artists could adopt to deliver high-quality work efficiently. A good example of this was a workflow for integrating wardrobe seamlessly with stylized wrinkles, published by the rigging team. Beyond the technical aspects, one of the most rewarding parts of the role was mentoring artists. Helping them expand their skills, get them confident in using proprietary software, and contribute their own creative problem-solving to the pipeline.</p>
+        <details class="accordion">
+          <summary><span class="caret">▶</span> Reel Breakdown</summary>
+          <div class="accordion-inner">
+            <p>As the Body Rigging Lead for The Bad Guys, my responsibilities were to establish standards across the show, help develop techniques to achieve the film's distinctive stylized look, and build workflows that artists could adopt to deliver high-quality work efficiently. A good example of this was a workflow for integrating wardrobe seamlessly with stylized wrinkles, published by the rigging team. Beyond the technical aspects, one of the most rewarding parts of the role was mentoring artists. Helping them expand their skills, get them confident in using proprietary software, and contribute their own creative problem-solving to the pipeline.</p>
             <h3>Reel Breakdown:</h3>
             <ul>
               <li>Wolf Body</li>
@@ -436,30 +572,29 @@
               <li>Police Chief Body</li>
               <li>Shark Face, Body</li>
             </ul>
-          </p>
+          </div>
+        </details>
+      </section>
+
+      <!-- VIDEO CARD 7 -->
+      <section class="video-card" aria-label="Trolls World Tour Rigging Lead Showreel">
+        <h2 class="video-title">Trolls World Tour Rigging Lead Showreel</h2>
+        <div class="video-container">
+          <iframe
+            src="https://player.vimeo.com/video/409686605?title=0&byline=0&portrait=0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            title="Trolls World Tour Rigging Lead Showreel">
+          </iframe>
         </div>
-      </details>
-    </section>
-    <!-- VIDEO CARD 7 -->
-    <section class="content video-card" aria-label="Trolls World Tour Rigging Lead Showreel">
-      <h2 class="h1">Trolls World Tour Rigging Lead Showreel</h2>
-      <div class="video">
-        <iframe
-          src="https://player.vimeo.com/video/409686605?title=0&byline=0&portrait=0"
-          allow="autoplay; fullscreen; picture-in-picture"
-          style="position:absolute;top:0;left:0;width:100%;height:100%;"
-          title="Trolls World Tour Rigging Lead Showreel">
-        </iframe>
-      </div>
-      <details class="accordion">
-        <summary><span class="caret">▶</span> Reel Breakdown</summary>
-        <div class="accordion-inner">
-          <p>
-            <p>As a rigging lead on Trolls World Tour I managed character and prop setup, including rigging, weighting, and skinning, increasing delivery speed by 200%, saving ~50 man-weeks.  I also had the opportunity to rig approximately 74 bodies, faces, creatures and props. That ended up being about ~0.95 rigs a week. Although that doesn’t include the hundreds of hair/wardrobe assets I installed as well (I didn't have a good way to figure that number out).</p>
-          </p>
-        </div>
-      </details>
-    </section>
-  </main>
+        <details class="accordion">
+          <summary><span class="caret">▶</span> Reel Breakdown</summary>
+          <div class="accordion-inner">
+            <p>As a rigging lead on Trolls World Tour I managed character and prop setup, including rigging, weighting, and skinning, increasing delivery speed by 200%, saving ~50 man-weeks. I also had the opportunity to rig approximately 74 bodies, faces, creatures and props. That ended up being about ~0.95 rigs a week. Although that doesn't include the hundreds of hair/wardrobe assets I installed as well (I didn't have a good way to figure that number out).</p>
+          </div>
+        </details>
+      </section>
+
+    </main>
+  </div>
 </body>
 </html>
